@@ -1,4 +1,4 @@
 AerialBombardment
 =================
 
-Minecraft mode - Drop things from the skies onto your enemy's heads.
+Minecraft mod - Drop things from the skies onto your enemy's heads.
