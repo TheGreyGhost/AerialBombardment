@@ -1,0 +1,21 @@
+{
+  "modinfoversion": 2,
+  "modlist": [{
+    "modid": "aerialbombardment",
+    "name": "Aerial Bombardment",
+    "description": "Rain down terror (and pigs) on the heads of your enemies!",
+    "version": "0.0.1",
+    "mcversion": "1.6.4",
+    "url": "https://github.com/TheGreyGhost/AerialBombardment",
+    "updateUrl": "",
+    "authors": [ "TheGreyGhost" ],
+    "credits": "With many thanks to the MCP and Forge authors for making this possible.",
+    "logoFile": "",
+    "screenshots": [""],
+    "parent": "",
+    "requiredMods": [ "Forge" ],
+    "dependencies": [ "" ],
+    "dependants": [ "" ],
+    "useDependencyInformation": "true"
+  }]
+}
