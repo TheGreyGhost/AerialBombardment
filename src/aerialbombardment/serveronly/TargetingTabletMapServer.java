@@ -1,7 +1,6 @@
-package aerialbombardment.clientonly;
+package aerialbombardment.serveronly;
 
-import aerialbombardment.common.network.Packet250TabletMapData;
-import aerialbombardment.serveronly.TabletMapDataWithAltitude;
+import aerialbombardment.clientonly.TabletMapData;
 import cpw.mods.fml.common.FMLLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -12,17 +11,12 @@ import net.minecraft.world.chunk.Chunk;
  * User: The Grey Ghost
  * Date: 1/02/14
  */
-public class TargetingTabletMapClient
+public class TargetingTabletMapServer
 {
 
-  public TargetingTabletMapClient(int wxCentreInit, int wzCentreInit)
+  public TargetingTabletMapServer(int wxCentreInit, int wzCentreInit)
   {
     mapData = new TabletMapDataWithAltitude(wxCentreInit, wzCentreInit);
-  }
-
-  public void updateMapFromPacket(Packet250TabletMapData packet)
-  {
-
   }
 
   /**
@@ -106,23 +100,23 @@ public class TargetingTabletMapClient
 
 
     if (mapData == null ||  mapData.altitude == null || mapData.mapColours == null ) {
-      FMLLog.severe("mapData not properly initialised in " + TargetingTabletMapClient.class.getCanonicalName());
+      FMLLog.severe("mapData not properly initialised in " + TargetingTabletMapServer.class.getCanonicalName());
       return;
     }
     if (mapxStart < 0 || mapxStart > mapData.MAP_SIZE_X) {
-      FMLLog.severe("mapxStart out of range (%d) in " + TargetingTabletMapClient.class.getCanonicalName(), mapxStart);
+      FMLLog.severe("mapxStart out of range (%d) in " + TargetingTabletMapServer.class.getCanonicalName(), mapxStart);
       return;
     }
     if (mapzStart < 0 || mapzStart > mapData.MAP_SIZE_Z) {
-      FMLLog.severe("mapzStart out of range (%d) in " + TargetingTabletMapClient.class.getCanonicalName(), mapzStart);
+      FMLLog.severe("mapzStart out of range (%d) in " + TargetingTabletMapServer.class.getCanonicalName(), mapzStart);
       return;
     }
     if (xCount < 0 || xCount > mapData.MAP_SIZE_X) {
-      FMLLog.severe("xCount out of range (%d) in " + TargetingTabletMapClient.class.getCanonicalName(), xCount);
+      FMLLog.severe("xCount out of range (%d) in " + TargetingTabletMapServer.class.getCanonicalName(), xCount);
       return;
     }
     if (zCount < 0 || zCount > mapData.MAP_SIZE_Z) {
-      FMLLog.severe("zCount out of range (%d) in " + TargetingTabletMapClient.class.getCanonicalName(), zCount);
+      FMLLog.severe("zCount out of range (%d) in " + TargetingTabletMapServer.class.getCanonicalName(), zCount);
       return;
     }
 

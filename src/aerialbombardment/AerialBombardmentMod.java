@@ -1,6 +1,7 @@
 package aerialbombardment;
 
 import aerialbombardment.common.CommonProxy;
+import aerialbombardment.common.network.PacketHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -12,7 +13,7 @@ import cpw.mods.fml.common.network.NetworkMod;
    * This class is just used to pass control to the appropriate "Proxy" class depending on whether the mod has been installed in a Standalone Client or a Dedicated Server.
    */
   @Mod(modid="aerialbombardment", name="Aerial Bombardment", version="0.0.1")
-  @NetworkMod(clientSideRequired=true, serverSideRequired=false)
+  @NetworkMod(clientSideRequired=true, serverSideRequired=false,channels={"aerialbombardment"}, packetHandler = PacketHandler.class)
   public class AerialBombardmentMod
 {
     // The instance of your mod that Forge uses.
