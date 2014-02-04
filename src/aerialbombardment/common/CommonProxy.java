@@ -1,7 +1,10 @@
 package aerialbombardment.common;
 
+import aerialbombardment.clientonly.eventhandlers.ClientTickHandler;
 import aerialbombardment.common.blocks.RegistryForBlocks;
 import aerialbombardment.common.items.RegistryForItems;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 /**
  * CommonProxy is used to set up the mod and start it running.  It contains all the code that should run on both the
@@ -24,7 +27,6 @@ public class CommonProxy {
    */
   public void load()
   {
-
   }
 
   /**
@@ -32,6 +34,6 @@ public class CommonProxy {
    */
   public void postInit()
   {
-
+    TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
   }
 }

@@ -1,4 +1,4 @@
-package aerialbombardment.clientonly.EventHandlers;
+package aerialbombardment.clientonly.eventhandlers;
 
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;

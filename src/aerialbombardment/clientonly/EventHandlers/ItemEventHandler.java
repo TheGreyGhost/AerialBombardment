@@ -1,4 +1,4 @@
-package aerialbombardment.clientonly.EventHandlers;
+package aerialbombardment.clientonly.eventhandlers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

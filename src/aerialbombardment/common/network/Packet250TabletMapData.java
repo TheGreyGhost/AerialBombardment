@@ -1,6 +1,9 @@
 package aerialbombardment.common.network;
 
 
+import aerialbombardment.clientonly.TabletMapData;
+import aerialbombardment.common.TabletMapDataSnapshot;
+import cpw.mods.fml.common.FMLLog;
 import net.minecraft.block.Block;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.util.ChunkCoordinates;
@@ -15,36 +18,26 @@ import java.util.List;
  */
 public class Packet250TabletMapData
 {
-  public int getToolItemID() {
-    return toolItemID;
-  }
-
-  public int getButton() {
-    return button;
-  }
-
-  public BlockWithMetadata getBlockToPlace() {
-    return blockToPlace;
-  }
-
-  public List<ChunkCoordinates> getCurrentlySelectedBlocks() {
-    return currentlySelectedBlocks;
-  }
 
   /**
-   * Packet sent from client to server, to indicate when the user has used a SpeedyTool
-   * @param newToolItemID   - the item of the speedy tool used
-   * @param newButton       - left mouse button (attack) = 0; right mouse button (use) = 1
-   * @param newCurrentlySelectedBlocks - a list of the blocks selected by the tool when the button was clicked
+   * Transmits the updated TabletMap to the client
+   * @param tabletMapToTransmit the updated TabletMap
+   * @param lastTransmission the last transmitted TabletMap (or null for none)
+   * @throws IOException
    */
-  public Packet250TabletMapData(int newToolItemID, int newButton, BlockWithMetadata newBlockToPlace, List<ChunkCoordinates> newCurrentlySelectedBlocks) throws IOException
+  public Packet250TabletMapData(TabletMapDataSnapshot tabletMapToTransmit, TabletMapDataSnapshot lastTransmission) throws IOException
   {
-    super();
+    if (tabletMapToTransmit == null) {
+      FMLLog.severe("tabletMapToTransmit is null in " + Packet250TabletMapData.class.getCanonicalName());
+      return;
+    }
 
-    toolItemID = newToolItemID;
-    button = newButton;
-    blockToPlace = newBlockToPlace;
-    currentlySelectedBlocks = newCurrentlySelectedBlocks;
+    TabletMapDataSnapshot workingTabletMap;
+    if (lastTransmission == null) {
+      workingTabletMap = tabletMapToTransmit;
+    } else {
+      workingTabletMap = calculateDelta(tabletMapToTransmit, lastTransmission);
+    }
 
     int blockID = (blockToPlace == null) ? 0 : blockToPlace.block.blockID;
     int metaData = (blockToPlace == null) ? 0 : blockToPlace.metaData;
@@ -65,6 +58,8 @@ public class Packet250TabletMapData
     }
     packet250 = new Packet250CustomPayload("speedytools",bos.toByteArray());
   }
+
+
 
   public Packet250CustomPayload getPacket250CustomPayload() {
     return packet250;
@@ -105,9 +100,6 @@ public class Packet250TabletMapData
     }
   }
 
-  private int toolItemID;
-  private int button;
-  private BlockWithMetadata blockToPlace;
-  private List<ChunkCoordinates> currentlySelectedBlocks = new ArrayList<ChunkCoordinates>();
+  private boolean deltaCompression = false;
   private Packet250CustomPayload packet250 = null;
 }

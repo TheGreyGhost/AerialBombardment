@@ -3,9 +3,9 @@ package aerialbombardment.clientonly;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.MinecraftForge;
-import aerialbombardment.clientonly.EventHandlers.ClientTickHandler;
-import aerialbombardment.clientonly.EventHandlers.CustomSoundsHandler;
-import aerialbombardment.clientonly.EventHandlers.ItemEventHandler;
+import aerialbombardment.clientonly.eventhandlers.ClientTickHandler;
+import aerialbombardment.clientonly.eventhandlers.CustomSoundsHandler;
+import aerialbombardment.clientonly.eventhandlers.ItemEventHandler;
 import aerialbombardment.clientonly.renderers.RegistryForRenderers;
 import aerialbombardment.common.CommonProxy;
 
