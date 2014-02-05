@@ -1,5 +1,8 @@
 package aerialbombardment.clientonly;
 
+import cpw.mods.fml.common.FMLLog;
+import javafx.scene.control.Tab;
+
 /**
  * User: The Grey Ghost
  * Date: 1/02/14
@@ -15,7 +18,7 @@ package aerialbombardment.clientonly;
  *     brightnessmodifer is MAP_COLOUR_LIGHTER, MAP_COLOUR_BASE, or MAP_COLOUR_DARKER
  *     For water (materialMapColor is waterColor), this is calculated from the water depth.  For all others, it is calculated for contours (changes in altitude)
  */
-public class TabletMapData
+public class TabletMapData implements Cloneable
 {
   public TabletMapData(int wxCentreInit, int wzCentreInit) {
     ixMinOffset = 0;
@@ -24,6 +27,38 @@ public class TabletMapData
     wzCentre = wzCentreInit;
 
     mapColours = new byte[MAP_STORAGE_SIZE];
+  }
+
+  public TabletMapData()
+  {
+  }
+
+  @Override
+  public TabletMapData clone() throws CloneNotSupportedException
+  {
+    return (TabletMapData)super.clone();
+  }
+
+  /**
+   * checks to see if this is a valid map or not
+   *   Prints an error to the log and returns false if invalid
+   */
+  public boolean validate()
+  {
+    if (ixMinOffset < 0 || ixMinOffset >= MAP_SIZE_X) {
+      FMLLog.severe("ixMinOffset (%d) out of range in %s", ixMinOffset, TabletMapData.class.getCanonicalName());
+      return false;
+    }
+    if (iZMinOffset < 0 || iZMinOffset >= MAP_SIZE_Z) {
+      FMLLog.severe("izMinOffset (%d) out of range in %s", iZMinOffset, TabletMapData.class.getCanonicalName());
+      return false;
+    }
+    if (mapColours.length != MAP_STORAGE_SIZE) {
+      FMLLog.severe("mapColours was incorrect size (%d) in %s", mapColours.length, TabletMapData.class.getCanonicalName());
+      return false;
+    }
+
+    return true;
   }
 
   public static final int BORDER_SIZE = 20;

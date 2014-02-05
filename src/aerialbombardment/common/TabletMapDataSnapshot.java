@@ -1,6 +1,7 @@
 package aerialbombardment.common;
 
 import aerialbombardment.clientonly.TabletMapData;
+import cpw.mods.fml.common.FMLLog;
 
 /**
  * User: The Grey Ghost
@@ -8,10 +9,21 @@ import aerialbombardment.clientonly.TabletMapData;
  */
 public class TabletMapDataSnapshot
 {
-  TabletMapDataSnapshot(TabletMapData initTabletMapData, long initMasterTickCount)
+  public TabletMapDataSnapshot(TabletMapData initTabletMapData, long initMasterTickCount)
   {
     tabletMapData = initTabletMapData;
     masterTickCount = initMasterTickCount;
+  }
+
+  public TabletMapDataSnapshot clone()
+  {
+    try {
+      TabletMapDataSnapshot retval = new TabletMapDataSnapshot(tabletMapData.clone(), masterTickCount);
+      return retval;
+    } catch (CloneNotSupportedException e) {
+      FMLLog.severe("Threw exception %s in %s", e.getLocalizedMessage(), TabletMapDataSnapshot.class.getCanonicalName());
+      return null;
+    }
   }
 
   public TabletMapData tabletMapData;
