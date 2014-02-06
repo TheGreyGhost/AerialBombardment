@@ -27,7 +27,7 @@ public class TargetingTabletMapServer
    * @param tabletMapNumber a unique number assigned to this tablet [0 - tabletMapCount-1], used for staggering workload
    * @param tabletMapCount the number of tablets (for staggering workload)
    */
-  public void tick(World world, int wxCentre, int wzCentre, long masterTickCount, int tabletMapNumber, int tabletMapCount)
+  public void tick(World world, int wxCentre, int wzCentre, int masterTickCount, int tabletMapNumber, int tabletMapCount)
   {
     if (masterTickCount % UPDATE_PERIOD_TICKS != (tabletMapNumber * tabletMapCount / UPDATE_PERIOD_TICKS)) return;
     updateEntireMap(world, wxCentre, wzCentre);

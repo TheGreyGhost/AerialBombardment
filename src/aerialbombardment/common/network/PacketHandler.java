@@ -15,6 +15,7 @@ import speedytools.serveronly.SpeedyToolWorldManipulator;
 public class PacketHandler implements IPacketHandler
 {
   public static final byte PACKET250_TABLETMAPDATA_ID = 0;
+  public static final int MAXIMUM_PACKET_SIZE = 30000;
 
   @Override
   public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player playerEntity)

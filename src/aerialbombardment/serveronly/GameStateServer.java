@@ -64,11 +64,11 @@ public class GameStateServer
    *
    * @return the master tick count for the server
    */
-  public long getMasterTickCount() {
+  public int getMasterTickCount() {
     return masterTickCount;
   }
 
   private Map<EntityPlayerMP, TargetingTabletMapServer> playerTabletMaps;
   private static GameStateServer gameStateServer = new GameStateServer();
-  private long masterTickCount = 0;
+  private int masterTickCount = 0;
 }

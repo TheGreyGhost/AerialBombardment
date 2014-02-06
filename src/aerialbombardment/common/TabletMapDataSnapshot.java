@@ -9,7 +9,7 @@ import cpw.mods.fml.common.FMLLog;
  */
 public class TabletMapDataSnapshot
 {
-  public TabletMapDataSnapshot(TabletMapData initTabletMapData, long initMasterTickCount)
+  public TabletMapDataSnapshot(TabletMapData initTabletMapData, int initMasterTickCount)
   {
     tabletMapData = initTabletMapData;
     masterTickCount = initMasterTickCount;
@@ -27,5 +27,5 @@ public class TabletMapDataSnapshot
   }
 
   public TabletMapData tabletMapData;
-  public long masterTickCount;
+  public int masterTickCount;
 }
